@@ -1,13 +1,18 @@
-.App {
-  
-}
 
-.App-header {  
+
+.middle-section {   
   display: flex;  
+  flex: 1;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  
+}
+
+.middle-section>div{
+  flex-grow: 1;
+  
   
 }
 
@@ -17,9 +22,39 @@
   background-repeat: no-repeat;
   background-size: contain;
   background-position: bottom; 
-  height: 726px;
+  height: 750px;
   width: 500px;
 
+}
+
+.image-search{
+  
+  background-image: url('../../assets/bg.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  
+  height: 750px;
+  width: 500px;
+
+  display: flex;
+  align-items: center;
+  justify-content: left;
+
+}
+
+
+.search-box{
+  height: 250px;
+  width: 360px;
+  background-color: #ffffff;
+  border-radius: 25px;
+  
+}
+
+.search-box>input{
+  height: 50px;
+  padding: 1rem 0;
+  margin: 1rem 0;
 }
 
 
