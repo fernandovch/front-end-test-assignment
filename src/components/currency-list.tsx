@@ -1,17 +1,29 @@
 import { Currency } from "../common/interfaces/currency"
 import CurrencyItem from "./currency-item"
 
-const CurrencyList =(props : Currency[])=>{
+type ICurrency ={
+    props:Currency[]
+}
 
-    const elements = props.map(currency=>{
-        <div key={currency.id}>
-            <CurrencyItem {...currency}></CurrencyItem>
-        </div>
-    })
-    return
-    <div>
+const CurrencyList : React.FC<{currencyData:Currency[]}> =(props : { currencyData :Currency[]})=>{
+
+    const elements:any = []
+    
+        for(var currency of props.currencyData)
+        {
+            elements.push(        
+                <div key={currency.id}>
+                    <CurrencyItem {...currency}></CurrencyItem>
+                </div>
+            )
+        }
         
-    </div>
+
+    return(
+        <div>
+            {elements}
+        </div>
+    )
 
 
 }

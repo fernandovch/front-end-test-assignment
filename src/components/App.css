@@ -1,5 +1,11 @@
 .App {
   text-align: center;
+
+  background-image: url('../../assets/figure.png');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center; 
+  height: 100vmin;
 }
 
 
@@ -9,9 +15,7 @@
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.App-header {  
   display: flex;
   flex-direction: column;
   align-items: center;

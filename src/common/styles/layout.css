@@ -5,3 +5,9 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+body{
+    background-image: linear-gradient(to left, rgb(45,10,74), rgb(42,10,74));
+
+
+}

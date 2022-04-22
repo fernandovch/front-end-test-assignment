@@ -1,12 +1,12 @@
 
 import {Currency} from './../common/interfaces/currency'
 
-const  CurrencyItem =( props:Currency)=>
+const  CurrencyItem =( props: Currency)=>
 {
     return(
         <div>
-            <h1>{props.name}</h1>
-            <h1>{props.value}</h1>
+            <span>{props.name}</span>
+            <span>{props.value}</span>
         </div>
     )
 }
