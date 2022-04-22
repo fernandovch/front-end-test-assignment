@@ -7,7 +7,6 @@ import CurrencyList from './currency-list';
 
 import TextField from '@mui/material/TextField';
 
-
 import { styled } from '@mui/material/styles';
 import Button, { ButtonProps } from '@mui/material/Button';
 
@@ -32,10 +31,9 @@ const ColorButton = styled(Button)<ButtonProps>(({ theme }) => ({
   color: theme.palette.getContrastText('#fd4c24'),
   backgroundColor: orange[700],
   '&:hover': {
-    backgroundColor: orange[700],
+    backgroundColor: orange['A400'],
   },
-  width: '300px',
-  height: '40px'
+  width: '300px',  
 }));
 
   return (
@@ -53,9 +51,11 @@ const ColorButton = styled(Button)<ButtonProps>(({ theme }) => ({
          <div className="image-search">
 
             <div className='search-box'>              
+              
+              <div className='searchInputs'>
               <TextField id="outlined-basic" label="Cryptocurrency code" variant="standard" />              
-              <ColorButton variant="contained">Custom CSS</ColorButton>
-              <p></p>
+              <ColorButton variant="contained">ADD</ColorButton>
+              </div>
             </div>
             
 
