@@ -42,8 +42,20 @@ const ColorButton = styled(Button)<ButtonProps>(({ theme }) => ({
 
       </header>
       <section className="middle-section">
-         <div>
-         <CurrencyList currencyData={ currencyData } />
+         <div className='left-section'>
+            <div>
+                <i className='logo' />
+            </div>
+            <div>
+              <h4>
+                Now you can track all your cryptos here!
+              </h4>
+              <p>
+                Just enter the Cryptocurrency code on the form to the right.
+              </p>
+            </div>
+
+            <CurrencyList currencyData={ currencyData } />
          </div>
          <div className="image-center">
            &nbsp;
@@ -55,6 +67,7 @@ const ColorButton = styled(Button)<ButtonProps>(({ theme }) => ({
               <div className='searchInputs'>
               <TextField id="outlined-basic" label="Cryptocurrency code" variant="standard" />              
               <ColorButton variant="contained">ADD</ColorButton>
+              <p>Use of this service is subject to terms and conditions.</p>
               </div>
             </div>
             

@@ -11,10 +11,29 @@
 }
 
 .middle-section>div{
-  flex-grow: 1;
-  
-  
+  flex-grow: 1;  
 }
+
+
+.left-section{
+  width: min-content;
+}
+
+.logo{
+  
+  background-image: url('../../assets/logo.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  
+  height: 40px;
+  width: 185px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
 
 .image-center{
   
@@ -52,8 +71,10 @@
 }
 
 .search-box>.searchInputs>* {    
-  margin: 2rem ;  
+  margin: 1rem 2rem ;  
   width: 80%;
+  color: #c9cbd0;
+  font-size: 1rem;
 }
 
 

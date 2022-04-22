@@ -1,0 +1,40 @@
+
+.element-currency{
+  padding: 0.75rem 0;
+  display: flex; 
+  background:
+    linear-gradient(
+      to right, 
+      rgba(119, 98, 139) 25%,
+      
+      rgba(42,10,74) 100%
+    )
+    right 
+    bottom    
+    no-repeat; 
+  background-size:100% 2px ;
+}
+
+.text-section>span{
+  display: grid;
+  align-items: center ;
+}
+.text-section>span{
+  padding: 0.25rem 1rem ;
+  font-size: 1rem;
+}
+
+.text-section>.currency-value{
+  color:  rgba(119, 98, 139) ;  
+  font-size: 0.75rem;
+}
+
+.icon{  
+    background-image: url('../../assets/icon.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+    height: 49px;
+    width: 40px;
+    margin: 0.25rem 0rem;  
+  }
