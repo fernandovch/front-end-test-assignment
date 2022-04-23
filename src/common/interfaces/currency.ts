@@ -5,6 +5,7 @@ export interface Currency {
 }
 
 export interface ICurrency {
+    id: string
     marketSymbol: string
     ticker : {
         lastPrice : string

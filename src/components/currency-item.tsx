@@ -8,7 +8,6 @@ import IconButton from '@mui/material/IconButton';
 
 import { blueGrey } from '@mui/material/colors';
 
-const color = blueGrey[50];
 
 const  CurrencyItem =( props: ICurrency)=>
 {

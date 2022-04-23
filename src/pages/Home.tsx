@@ -1,6 +1,9 @@
-import { Currency, ICurrency } from "../common/interfaces/currency";
+import { useState, useEffect } from "react";
 
-import { useGetCurrency } from './../querys/getCurrency';
+import { Currency, ICurrency } from "../common/interfaces/currency";
+import { useGetCurrency } from "./../querys/getCurrency";
+
+import { v4 as uuidv4 } from "uuid";
 
 import "../common/styles";
 import "./Home.css";
@@ -12,19 +15,7 @@ import Button, { ButtonProps } from "@mui/material/Button";
 import { orange } from "@mui/material/colors";
 
 function Home() {
-  /*const props: Currency[] = [
-    {
-      id: "1",
-      name: "BITCOIN",
-      value: "123",
-    },
-    { id: "2", name: "FICON", value: "123" },
-  ];*/
-
-  const props = useGetCurrency();
-
-  const currencyData: ICurrency[] = props;
-
+  
   const ColorButton = styled(Button)<ButtonProps>(({ theme }) => ({
     color: theme.palette.getContrastText("#fd4c24"),
     backgroundColor: orange[700],
@@ -33,6 +24,34 @@ function Home() {
     },
     width: "300px",
   }));
+
+
+  const [count, setCount] = useState(0);
+  const [listCurrencies, setListCurrencies] = useState<ICurrency[]>([]);
+
+  const mock = {
+    id : uuidv4(),
+    marketSymbol: "BTC",
+    ticker: {
+      lastPrice: "2.564",
+    },
+    error: "",
+    loading: false,
+  };
+
+  useEffect(() => {
+    if (count > 0) {
+      if (listCurrencies.length == 0) setListCurrencies([mock]);
+      else {
+        const pivot =[...listCurrencies, mock] ;
+        setListCurrencies(pivot);
+      }
+    }
+  }, [count]);
+
+  //const props = useGetCurrency();
+
+  const currencyData: ICurrency[] = listCurrencies;
 
 
   return (
@@ -59,7 +78,14 @@ function Home() {
                 label="Cryptocurrency code"
                 variant="standard"
               />
-              <ColorButton variant="contained">ADD</ColorButton>
+              <ColorButton
+                variant="contained"
+                onClick={() => {
+                  setCount(count + 1);
+                }}
+              >
+                ADD
+              </ColorButton>
               <p>Use of this service is subject to terms and conditions.</p>
             </div>
           </div>
