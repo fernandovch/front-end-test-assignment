@@ -1,18 +1,23 @@
-import { Currency } from "../common/interfaces/currency"
+import { ICurrency } from "../common/interfaces/currency"
 import CurrencyItem from "./currency-item"
 
-type ICurrency ={
-    props:Currency[]
-}
 
-const CurrencyList : React.FC<{currencyData:Currency[]}> =(props : { currencyData :Currency[]})=>{
+const CurrencyList : React.FC<{currencyData:ICurrency[]}> =(props : { currencyData :ICurrency[]})=>{
 
     const elements:any = []
+
+
+    if (!props.currencyData)
+    return <h1> No data to load </h1>
+
+    if(props.currencyData[0].error != '')
+    return <h1> Error: {props.currencyData[0].error} </h1>
+
     
         for(var currency of props.currencyData)
         {
             elements.push(        
-                <div key={currency.id}>
+                <div key={currency.marketSymbol}>
                     <CurrencyItem {...currency}></CurrencyItem>
                 </div>
             )
