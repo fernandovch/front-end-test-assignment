@@ -1,11 +1,14 @@
 
+.separator{
+  margin: 0.75rem;
+}
 
 .middle-section {   
   display: flex;  
   flex: 1;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: calc(1rem + 1vmin);  
   color: white;
   
 }
@@ -16,20 +19,36 @@
 
 
 .left-section{
-  width: min-content;
-  
-  height: 60vmin;
+  width: min-content; 
+}
 
-  -ms-overflow-style: none; /* for Internet Explorer, Edge */
-  scrollbar-width: none; /* for Firefox */
+.scrollable-currency{
+  width: 18rem;  
+  height: 16vmin;
+
+  -ms-overflow-style: none;
+  scrollbar-width: none; 
   overflow-y: scroll; 
-  
 }
 
-.left-section::-webkit-scrollbar {
-  display: none; /* for Chrome, Safari, and Opera */
+.scrollable-currency::-webkit-scrollbar {
+  display: none; 
 }
 
+.left-section h3{
+  position: absolute;
+  width: 340px;  
+}
+
+.left-section p{
+  padding-top: 8rem ;
+  font-size: 1.25rem;
+  color: rgb(200, 191, 231);
+}
+
+.left-section .logoDiv{
+  padding: 4rem 0 1rem 0;
+}
 
 .logo{
   
@@ -78,7 +97,7 @@
   height: 250px;
   width: 360px;
   background-color: #ffffff;
-  border-radius: 25px;
+  border-radius: 0.25rem;
   
 }
 
@@ -87,6 +106,15 @@
   width: 80%;
   color: #c9cbd0;
   font-size: 1rem;
+}
+
+.search-box>div:first-child{
+  margin-top: 1.25rem ;  
+}
+
+.search-box>.searchInputs>h6{
+  font-size: 0.75rem;
+  text-align: center;
 }
 
 

@@ -4,7 +4,7 @@ const NoData:React.FC<{label:string}> = ({label}) => {
   return (
     <div className="element-currency">
       <div className="text-section">
-        <h3>{label}</h3>
+        <h6>{label}</h6>
       </div>
     </div>
   );

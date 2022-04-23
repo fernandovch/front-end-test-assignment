@@ -12,13 +12,9 @@
 body{
     background-image: linear-gradient(to left, rgb(45,10,74), rgb(42,10,74));
     
-    display: flex;
-    align-items: center;
-    justify-content: center;
     margin: 0 auto;
-    
-    width: 100vh;
+    width: min-content;
     background-color: aliceblue;
-
     font-family: 'Open Sans';
 }
+
