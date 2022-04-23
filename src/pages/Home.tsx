@@ -44,7 +44,7 @@ function Home() {
             <i className="logo" />
           </div>
           <div>
-            <h4>Now you can track all your cryptos here!</h4>
+            <h3>Now you can track all your cryptos here!</h3>
             <p>Just enter the Cryptocurrency code on the form to the right.</p>
           </div>
 

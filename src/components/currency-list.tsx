@@ -1,14 +1,15 @@
 import { ICurrency } from "../common/interfaces/currency"
 import CurrencyItem from "./currency-item"
-
+import NoData from './no-data'
 
 const CurrencyList : React.FC<{currencyData:ICurrency[]}> =(props : { currencyData :ICurrency[]})=>{
 
     const elements:any = []
 
+    const textString :string = "No data is available"
 
     if (!props.currencyData)
-    return <h1> No data to load </h1>
+    return <NoData label={textString} />
 
     if(props.currencyData[0].error != '')
     return <h1> Error: {props.currencyData[0].error} </h1>
