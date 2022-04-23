@@ -1,8 +1,8 @@
 import { gql, useQuery } from "@apollo/client";
 import { ICurrency } from '../common/interfaces/currency'
 
-const GET_PRICES = gql`query price {
-  markets(filter:{ baseSymbol: {_eq:"BTC"} quoteSymbol: {_eq:"EUR"}}) {
+const GET_PRICES = gql`query price ($baseSymbol:string) {
+  markets(filter:{ baseSymbol: {_eq: $baseSymbol} quoteSymbol: {_eq:"EUR"}}) {
     marketSymbol
     ticker {
       lastPrice
@@ -10,13 +10,11 @@ const GET_PRICES = gql`query price {
   }
 }`
 
-export const useGetCurrency = (): ICurrency[]  => {
-  const { data, loading, error, } = useQuery(GET_PRICES, {
-    variables: { baseSymbol : "BTC", quoteSymbol: "EUR"} 
-});
+export const useGetCurrency = (criteria:string): ICurrency[]  => {
 
-    // if (loading) return [{marketSymbol :'', ticker : {lastPrice: ''}, error:'', loading : true }]
-    // if (error) return [{marketSymbol :'', ticker : {lastPrice: ''}, error:error.message , loading : true }]
-    
+  const { data, loading, error, } = useQuery(GET_PRICES, {
+    variables: { baseSymbol : criteria} 
+});    
     return data?.markets ;
 }
+

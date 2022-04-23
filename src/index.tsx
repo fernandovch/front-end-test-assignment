@@ -10,9 +10,10 @@ const root = ReactDOM.createRoot(
 );
 root.render(
 
-  <ApolloProvider client={client}>
+  
   <React.StrictMode>
+    <ApolloProvider client={client}>
     <Home />
+    </ApolloProvider>
   </React.StrictMode>
-  </ApolloProvider>
 );

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import { Currency, ICurrency } from "../common/interfaces/currency";
+import { ICurrency } from "../common/interfaces/currency";
 import { IEventToTrigger } from "../common/interfaces/eventToTrigger";
 import { useGetCurrency } from "./../querys/getCurrency";
 
@@ -13,10 +13,11 @@ import CurrencyList from "./../components/currency-list";
 import TextField from "@mui/material/TextField";
 import { styled } from "@mui/material/styles";
 import Button, { ButtonProps } from "@mui/material/Button";
-import { orange, blueGrey} from "@mui/material/colors";
+import { orange} from "@mui/material/colors";
 
 
-const textColor = blueGrey["A200"]
+import { gql, useLazyQuery } from "@apollo/client";
+
 
 const ColorButton = styled(Button)<ButtonProps>(({ theme }) => ({
   color: theme.palette.getContrastText(orange[900]),
@@ -27,13 +28,49 @@ const ColorButton = styled(Button)<ButtonProps>(({ theme }) => ({
   width: "300px",
 }));
 
+const GET_PRICES = gql`query price  {
+  markets(filter:{ baseSymbol: {_eq: "BTC"} quoteSymbol: {_eq:"EUR"}}) {
+    marketSymbol
+    ticker {
+      lastPrice
+    }
+  }
+}`
+
+
 function Home() {
-  const [count, setCount] = useState<number>(0);
+  const [triggerCall, setTriggerCall] = useState<boolean>(false);
+  const [searchValue, setSearchValue] = useState<string>('');
   const [listCurrencies, setListCurrencies] = useState<ICurrency[]>([]);
   const [deleteElement, setDeleteElement] = useState<string>();
 
+  const textChange = (event:any)=>{    
+    setSearchValue(event.target.value)    
+
+    getCountries()
+  }
+
+  
+    //const dataCurrency =  useGetCurrency("BTC");
+    
+
+    
+      const [
+        getCountries, 
+        { loading, data }
+      ] = useLazyQuery(GET_PRICES);
+    
+      
+      if (data && data.markets) {
+        console.log(data.countries);
+      }
+    
+    
+
+  
+
   useEffect(() => {
-    if (count) {
+    if (triggerCall) {
       const mock = {
         id: "",
         marketSymbol: "BTC",
@@ -44,27 +81,28 @@ function Home() {
         loading: false,
       };
       mock.id = uuidv4();
-      console.log(mock.id);
-      if (listCurrencies.length == 0) setListCurrencies([mock]);
+    
+      if (listCurrencies.length === 0) setListCurrencies([mock]);
       else {
         const pivot = [...listCurrencies, mock];
         setListCurrencies(pivot);
       }
     }
-  }, [count]);
+
+    setTriggerCall(false)
+  }, [triggerCall]);
 
   useEffect(() => {
     console.log(deleteElement);
     if (deleteElement) {
       const cleanedList = listCurrencies.filter(
-        (currency) => currency.id != deleteElement
+        (currency) => currency.id !== deleteElement
       );
       setListCurrencies(cleanedList);
     }
   }, [deleteElement]);
 
-  //const props = useGetCurrency();
-
+  
   const currencyData: ICurrency[] = listCurrencies;
 
   const deleteSelectedElement = (id: string): void => {
@@ -104,11 +142,12 @@ function Home() {
                 variant="outlined"                
                 color="info"
                 focused 
+                onChange={(event)=>{ textChange(event) }}
               />
               <ColorButton
                 variant="contained"
                 onClick={() => {
-                  setCount(count + 1);
+                  setTriggerCall(true);
                 }}
               >
                 ADD
