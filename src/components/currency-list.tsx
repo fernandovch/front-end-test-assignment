@@ -1,25 +1,27 @@
 import { ICurrency } from "../common/interfaces/currency"
+import { IEventToTrigger } from "../common/interfaces/eventToTrigger";
+
 import CurrencyItem from "./currency-item"
 import NoData from './no-data'
 
-const CurrencyList : React.FC<{currencyData:ICurrency[]}> =(props : { currencyData :ICurrency[]})=>{
+const CurrencyList : React.FC<{currencyData:ICurrency[], eventToTrigger:IEventToTrigger}> =({ currencyData , eventToTrigger})=>{
 
     const elements:any = []
 
     const textString :string = "No data is available"
 
-    if (!props.currencyData.length || !props.currencyData )
+    if (!currencyData.length || !currencyData )
     return <NoData label={textString} />
 
-    if(props.currencyData[0].error !== '')
-    return <h1> Error: {props.currencyData[0].error} </h1>
+    if(currencyData[0].error !== '')
+    return <h1> Error: {currencyData[0].error} </h1>
 
     
-        for(var currency of props.currencyData)
-        {
+        for(var currency of currencyData)
+        {            
             elements.push(        
                 <div key={currency.id}>
-                    <CurrencyItem {...currency}></CurrencyItem>
+                    <CurrencyItem props={currency} eventToTrigger={eventToTrigger} ></CurrencyItem>
                 </div>
             )
         }

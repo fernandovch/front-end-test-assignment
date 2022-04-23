@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 
 import { Currency, ICurrency } from "../common/interfaces/currency";
+import { IEventToTrigger } from "../common/interfaces/eventToTrigger";
 import { useGetCurrency } from "./../querys/getCurrency";
 
-import { v4 as uuidv4 } from "uuid";
+import { v4 as uuidv4 } from 'uuid';
 
 import "../common/styles";
 import "./Home.css";
@@ -14,33 +15,37 @@ import { styled } from "@mui/material/styles";
 import Button, { ButtonProps } from "@mui/material/Button";
 import { orange } from "@mui/material/colors";
 
+const ColorButton = styled(Button)<ButtonProps>(({ theme }) => ({
+  color: theme.palette.getContrastText("#fd4c24"),
+  backgroundColor: orange[700],
+  "&:hover": {
+    backgroundColor: orange["A400"],
+  },
+  width: "300px",
+}));
+
 function Home() {
   
-  const ColorButton = styled(Button)<ButtonProps>(({ theme }) => ({
-    color: theme.palette.getContrastText("#fd4c24"),
-    backgroundColor: orange[700],
-    "&:hover": {
-      backgroundColor: orange["A400"],
-    },
-    width: "300px",
-  }));
-
-
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState<number>(0);
   const [listCurrencies, setListCurrencies] = useState<ICurrency[]>([]);
+  const [deleteElement, setDeleteElement] = useState<string>();
 
-  const mock = {
-    id : uuidv4(),
-    marketSymbol: "BTC",
-    ticker: {
-      lastPrice: "2.564",
-    },
-    error: "",
-    loading: false,
-  };
 
   useEffect(() => {
-    if (count > 0) {
+    
+
+    if (count ) {
+      const mock = {
+        id :'',
+        marketSymbol: "BTC",
+        ticker: {
+          lastPrice: "2.564",
+        },
+        error: "",
+        loading: false,
+      };
+      mock.id =  uuidv4()
+      console.log(mock.id)
       if (listCurrencies.length == 0) setListCurrencies([mock]);
       else {
         const pivot =[...listCurrencies, mock] ;
@@ -49,10 +54,29 @@ function Home() {
     }
   }, [count]);
 
+
+  useEffect(() => {
+
+    console.log(deleteElement)
+    if(deleteElement)
+    {
+      const cleanedList = listCurrencies.filter(currency => currency.id != deleteElement)    
+      setListCurrencies(cleanedList)
+    }
+
+  }, [deleteElement]);
+
+
+
   //const props = useGetCurrency();
 
   const currencyData: ICurrency[] = listCurrencies;
 
+  const deleteSelectedElement = (id :string):void=>{
+    setDeleteElement(id)
+  }
+
+  const eventTOChild:IEventToTrigger = {eventToTrigger:deleteSelectedElement}
 
   return (
     <>
@@ -67,7 +91,7 @@ function Home() {
             <p>Just enter the Cryptocurrency code on the form to the right.</p>
           </div>
 
-          <CurrencyList currencyData={currencyData} />
+          <CurrencyList currencyData={currencyData} eventToTrigger={eventTOChild} />
         </div>
         <div className="image-center">&nbsp;</div>
         <div className="image-search">
