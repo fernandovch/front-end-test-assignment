@@ -1,0 +1,141 @@
+
+.separator{
+  margin: 0.75rem;
+}
+
+.middle-section {   
+  display: flex;  
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(1rem + 1vmin);  
+  color: white;
+  
+}
+
+.middle-section>div{
+  flex-grow: 1;  
+}
+
+
+.left-section{
+  width: min-content; 
+}
+
+.scrollable-currency{
+  width: 18rem;  
+  height: 16vmin;
+
+  -ms-overflow-style: none;
+  scrollbar-width: none; 
+  overflow-y: scroll; 
+  
+  margin-top: 1rem;
+}
+
+.scrollable-currency::-webkit-scrollbar {
+  display: none; 
+}
+
+.left-section h3{
+  position: absolute;
+  width: 340px;  
+}
+
+.left-section p{
+  padding-top: 8rem ;
+  font-size: 1.25rem;
+  color: rgb(200, 191, 231);
+}
+
+.left-section .logoDiv{
+  padding: 4rem 0 1rem 0;
+}
+
+.logo{
+  
+  background-image: url('../assets/logo.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  
+  height: 40px;
+  width: 185px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+
+.image-center{
+  
+  background-image: url('../assets/figure.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: bottom; 
+  height: 750px;
+  width: 500px;
+
+}
+
+.image-search{
+  
+  background-image: url('../assets/bg.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  
+  height: 750px;
+  width: 500px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+
+.search-box{
+  height: 250px;
+  width: 360px;
+  background-color: #ffffff;
+  border-radius: 0.25rem;
+  
+}
+
+.search-box>.searchInputs>* {    
+  margin: 1rem 2rem ;  
+  width: 80%;
+  color: #c9cbd0;
+  font-size: 1rem;
+}
+
+.search-box>div:first-child{
+  margin-top: 1.25rem ;  
+}
+
+.search-box>.searchInputs>h6{
+  font-size: 0.75rem;
+  text-align: center;
+}
+
+
+.footer {
+  display: flex;
+  flex: 1;
+  padding: 2rem 0;
+  background-color: #eaeaea;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer section{  
+  padding: 0.75rem  5rem;  
+  justify-content: center;
+  align-items: center;
+  font-size: 0.75rem;
+  color: #7e7a7a
+}
+
+
+

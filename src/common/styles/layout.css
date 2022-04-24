@@ -1,0 +1,20 @@
+
+@import url(//fonts.googleapis.com/css?family=Open+Sans);
+
+*,
+*::after,
+*::before{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-image: linear-gradient(to left, rgb(45,10,74), rgb(42,10,74));
+    
+    margin: 0 auto;
+    width: min-content;
+    background-color: aliceblue;
+    font-family: 'Open Sans';
+}
+
