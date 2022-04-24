@@ -3,11 +3,16 @@
 ## Task completed:
 
 - Use React, Apollo, TypeScript and hooks.
-- Create a website that looks similar to preview.png.
+- Create a website that looks similar to the image displayed below (reference image).
 - User can add cryptocurrencies to the list by entering their codes ("BTC", "XRP", BNB" etc.)
 - User can see the list of added currencies together with their EUR prices.
 - User can remove the cryptocurrencies from the list.
 
 ### Run the project with `npm start`
 
+## Image used for reference
+![image](https://user-images.githubusercontent.com/10751858/164994661-c119f0d0-ed21-4697-a833-78695918c7b1.png)
+
+### Screenshpt from this project
+![image](https://user-images.githubusercontent.com/10751858/164994709-cd626a97-d272-4120-978b-03752df13f43.png)
 
