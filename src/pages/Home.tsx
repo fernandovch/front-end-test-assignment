@@ -14,9 +14,6 @@ import { orange } from "@mui/material/colors";
 import { styled } from "@mui/material/styles";
 import "../common/styles";
 
-
-
-
 const ColorButton = styled(Button)<ButtonProps>(({ theme }) => ({
   color: theme.palette.getContrastText(orange[900]),
   backgroundColor: orange[900],
@@ -26,11 +23,25 @@ const ColorButton = styled(Button)<ButtonProps>(({ theme }) => ({
   width: "300px",
 }));
 
+
+/** MAIN PAGE WHERE THE FETCH OF THE DATA OCCURS AND THE VALIDATIONS MANAGE WHAT ITEMS NEED TO BE DISPLAYED */
+
+
 function Home() {
+
+  // INDICATES IS THE DATA IS ALREADY LOADED TO THE UI
   const [loadedData, setLoadedData] = useState<boolean>(false);
+
+  // INDICATOR THAT TRIGGERS THE CALL TO RETRIEVES THE DATA 
   const [triggerCall, setTriggerCall] = useState<boolean>(false);
+
+  // CONTAINS THE SEARCH VALUE USE IN THE QUERY 
   const [searchValue, setSearchValue] = useState<string>("");
+
+  // THE LIST OF ITEM RENDERED 
   const [listCurrencies, setListCurrencies] = useState<ICurrency[]>([]);
+
+  // ID OF THE ITEM NEEDED TO BE DELETED 
   const [deleteElement, setDeleteElement] = useState<string>();
 
   const textChange = (event: any) => {
@@ -42,6 +53,7 @@ function Home() {
     variables: { baseSymbol: searchValue },
   });
 
+  // TRIGGERS THE CALL TO THE API
   useEffect(() => {
     if (triggerCall) {
       getCurrencies();
@@ -51,6 +63,8 @@ function Home() {
     setTriggerCall(false);        
   }, [triggerCall]);
 
+
+  // DELETES THE ITEM FROM THE LIST 
   useEffect(() => {
     console.log(deleteElement);
     if (deleteElement) {
@@ -62,6 +76,7 @@ function Home() {
   }, [deleteElement]);
 
 
+  // IF DATA IS PRESENT AND IS NOT LOADED THEN DATA IS BEEN PASSED TO THE LIST 
   if(data && !loadedData)
   {
     if(data.markets.length >0)

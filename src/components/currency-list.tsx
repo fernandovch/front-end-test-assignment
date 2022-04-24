@@ -4,6 +4,9 @@ import { IEventToTrigger } from "../common/interfaces/eventToTrigger";
 import CurrencyItem from "./currency-item";
 import NoData from "./no-data";
 
+
+/** TAKES THE DATA FROM THE API RECEIVED AND CREATES A LIST OF ITEMS */
+
 const CurrencyList: React.FC<{
   currencyData: ICurrency[];
   eventToTrigger: IEventToTrigger;

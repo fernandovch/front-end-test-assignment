@@ -6,12 +6,12 @@ import "../common/styles";
 
 import CloseIcon from '@mui/icons-material/Close';  
 import IconButton from '@mui/material/IconButton';
-
 import { blueGrey } from '@mui/material/colors';
 
+/** CURRENCY ITEM IT SELF, DISPLAYS NAME AND VALUE  */
+
 const  CurrencyItem : React.FC<{props:ICurrency, eventToTrigger:IEventToTrigger}> =( {props, eventToTrigger})=>
-{
-    
+{    
     return(
         <div className='element-currency'>
             <i className='icon'/>

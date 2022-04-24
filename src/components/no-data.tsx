@@ -1,5 +1,6 @@
 import "../common/styles";
 
+/** COMPONENT USED FOR DISPLAYING NO DATA LEGEND */
 const NoData:React.FC<{label:string}> = ({label}) => {
   return (
     <div className="element-currency">
