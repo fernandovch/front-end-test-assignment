@@ -14,12 +14,9 @@ const CurrencyList: React.FC<{
   if (!currencyData.length || !currencyData)
     return <NoData label={textString} />;
 
-  if (currencyData[0].error !== "")
-    return <NoData label={`Error: ${currencyData[0].error}`} />;
-
   for (var currency of currencyData) {
     elements.push(
-      <div key={currency.id}>
+      <div key={currency.id} className='currency-list-items'>
         <CurrencyItem
           props={currency}
           eventToTrigger={eventToTrigger}

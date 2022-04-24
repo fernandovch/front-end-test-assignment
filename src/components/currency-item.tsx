@@ -19,8 +19,8 @@ const  CurrencyItem : React.FC<{props:ICurrency, eventToTrigger:IEventToTrigger}
         <div className='element-currency'>
             <i className='icon'/>
             <div className='text-section'>
-                <span>{props.marketSymbol}</span>
-                <span className='currency-value'>{props.ticker.lastPrice} &euro;</span>
+                <span>{props.marketSymbol.split(":")[1]}</span>
+                <span className='currency-value'>{ parseFloat(props.ticker.lastPrice).toFixed(2)} &euro;</span>
             </div>
             <div>             
             <IconButton  style={{color: blueGrey[50]}} aria-label="eliminate currency added" onClick={ ()=>{ eventToTrigger.eventToTrigger(props.id) }} >

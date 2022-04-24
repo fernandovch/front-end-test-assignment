@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 import { ICurrency } from "../common/interfaces/currency";
 import { IEventToTrigger } from "../common/interfaces/eventToTrigger";
-import { useGetCurrency } from "./../querys/getCurrency";
+import { useGetCurrency, GET_PRICES } from "./../querys/getCurrency";
 
 import { v4 as uuidv4 } from "uuid";
 
@@ -13,83 +13,44 @@ import CurrencyList from "./../components/currency-list";
 import TextField from "@mui/material/TextField";
 import { styled } from "@mui/material/styles";
 import Button, { ButtonProps } from "@mui/material/Button";
-import { orange} from "@mui/material/colors";
-
+import { orange } from "@mui/material/colors";
 
 import { gql, useLazyQuery } from "@apollo/client";
 
-
 const ColorButton = styled(Button)<ButtonProps>(({ theme }) => ({
   color: theme.palette.getContrastText(orange[900]),
-  backgroundColor: orange[900],  
+  backgroundColor: orange[900],
   "&:hover": {
     backgroundColor: orange[800],
   },
   width: "300px",
 }));
 
-const GET_PRICES = gql`query price  {
-  markets(filter:{ baseSymbol: {_eq: "BTC"} quoteSymbol: {_eq:"EUR"}}) {
-    marketSymbol
-    ticker {
-      lastPrice
-    }
-  }
-}`
-
-
 function Home() {
+  const [loadedData, setLoadedData] = useState<boolean>(false);
   const [triggerCall, setTriggerCall] = useState<boolean>(false);
-  const [searchValue, setSearchValue] = useState<string>('');
+  const [searchValue, setSearchValue] = useState<string>("");
   const [listCurrencies, setListCurrencies] = useState<ICurrency[]>([]);
   const [deleteElement, setDeleteElement] = useState<string>();
 
-  const textChange = (event:any)=>{    
-    setSearchValue(event.target.value)    
+  const textChange = (event: any) => {
+    setSearchValue(event.target.value);
 
-    getCountries()
-  }
+  };
 
-  
-    //const dataCurrency =  useGetCurrency("BTC");
-    
-
-    
-      const [
-        getCountries, 
-        { loading, data }
-      ] = useLazyQuery(GET_PRICES);
-    
-      
-      if (data && data.markets) {
-        console.log(data.countries);
-      }
-    
-    
-
-  
+  const [getCurrencies, { loading, data }] = useLazyQuery(GET_PRICES, {
+    variables: { baseSymbol: searchValue },
+  });
 
   useEffect(() => {
     if (triggerCall) {
-      const mock = {
-        id: "",
-        marketSymbol: "BTC",
-        ticker: {
-          lastPrice: "2.564",
-        },
-        error: "",
-        loading: false,
-      };
-      mock.id = uuidv4();
-    
-      if (listCurrencies.length === 0) setListCurrencies([mock]);
-      else {
-        const pivot = [...listCurrencies, mock];
-        setListCurrencies(pivot);
-      }
+      getCurrencies();
+      setLoadedData(false)      
     }
 
-    setTriggerCall(false)
+    setTriggerCall(false);
+    //setSearchValue('')
+    
   }, [triggerCall]);
 
   useEffect(() => {
@@ -102,7 +63,17 @@ function Home() {
     }
   }, [deleteElement]);
 
-  
+
+  if(data && !loadedData)
+  {
+    let currency =  Object.assign({},data.markets[0])
+    currency.id = uuidv4();
+    const pivot = [...listCurrencies, currency];
+    setListCurrencies(pivot);
+    setLoadedData(true)      
+
+  }
+
   const currencyData: ICurrency[] = listCurrencies;
 
   const deleteSelectedElement = (id: string): void => {
@@ -122,7 +93,9 @@ function Home() {
             <i className="logo" />
           </div>
           <div className="separator">
-            <h3 className="separator">Now you can track all your cryptos here!</h3>
+            <h3 className="separator">
+              Now you can track all your cryptos here!
+            </h3>
             <p>Just enter the Cryptocurrency code on the form to the right.</p>
           </div>
           <div className="scrollable-currency">
@@ -138,11 +111,14 @@ function Home() {
             <div className="searchInputs">
               <TextField
                 id="outlined-basic"
-                label="Cryptocurrency code"                
-                variant="outlined"                
+                label="Cryptocurrency code"
+                variant="outlined"
                 color="info"
-                focused 
-                onChange={(event)=>{ textChange(event) }}
+                value={searchValue}
+                focused
+                onChange={(event) => {
+                  textChange(event);
+                }}
               />
               <ColorButton
                 variant="contained"

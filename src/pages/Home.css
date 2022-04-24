@@ -29,6 +29,7 @@
   -ms-overflow-style: none;
   scrollbar-width: none; 
   overflow-y: scroll; 
+  
 }
 
 .scrollable-currency::-webkit-scrollbar {

@@ -9,7 +9,5 @@ export interface ICurrency {
     marketSymbol: string
     ticker : {
         lastPrice : string
-    }
-    error: string
-    loading: boolean
+    }        
 }
