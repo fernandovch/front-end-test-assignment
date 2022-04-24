@@ -32,7 +32,7 @@ const client = new ApolloClient({
     
     cache: new InMemoryCache(),
     link: middle.concat(link),    /** CREATING THE LINK TO THE  API WITH AUTHENTICATION  **/
-    defaultOptions: defaultOptions
+    
 });
 
 export default client;

@@ -64,10 +64,14 @@ function Home() {
 
   if(data && !loadedData)
   {
-    let currency =  Object.assign({},data.markets[0])
-    currency.id = uuidv4();
-    const pivot = [currency, ...listCurrencies];
-    setListCurrencies(pivot);
+    if(data.markets.length >0)
+    {
+      let currency =  Object.assign({},data.markets[0])
+      currency.id = uuidv4();
+      const pivot = [currency, ...listCurrencies];
+      setListCurrencies(pivot);
+    }
+    
     setLoadedData(true)      
     setSearchValue('')
 
@@ -105,7 +109,7 @@ function Home() {
             />
               
           </div>
-         
+          {loading ? <LoadingModal /> : <></>}  
         </div>
         <div className="image-center">&nbsp;</div>
         <div className="image-search">
