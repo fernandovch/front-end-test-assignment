@@ -30,6 +30,7 @@
   scrollbar-width: none; 
   overflow-y: scroll; 
   
+  margin-top: 1rem;
 }
 
 .scrollable-currency::-webkit-scrollbar {
@@ -53,7 +54,7 @@
 
 .logo{
   
-  background-image: url('../../assets/logo.svg');
+  background-image: url('../assets/logo.svg');
   background-repeat: no-repeat;
   background-size: cover;
   
@@ -69,7 +70,7 @@
 
 .image-center{
   
-  background-image: url('../../assets/figure.png');
+  background-image: url('../assets/figure.png');
   background-repeat: no-repeat;
   background-size: contain;
   background-position: bottom; 
@@ -80,7 +81,7 @@
 
 .image-search{
   
-  background-image: url('../../assets/bg.png');
+  background-image: url('../assets/bg.png');
   background-repeat: no-repeat;
   background-size: cover;
   

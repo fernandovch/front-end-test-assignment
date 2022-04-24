@@ -10,6 +10,7 @@ export const GET_PRICES = gql`query price ($baseSymbol: String!) {
   }
 }`
 
+/** CODE NEEDED IN CASES WHEN DOING A LOAD OF  DATA WHEN THE PAGE IS INITIALIZING  */
 export const useGetCurrency = (criteria:string): ICurrency[]  => {
 
   const { data, loading, error, } = useQuery(GET_PRICES, {

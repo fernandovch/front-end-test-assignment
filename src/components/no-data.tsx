@@ -1,4 +1,4 @@
-import "./currency-item.css";
+import "../common/styles";
 
 const NoData:React.FC<{label:string}> = ({label}) => {
   return (

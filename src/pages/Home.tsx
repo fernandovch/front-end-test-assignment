@@ -1,21 +1,21 @@
 import { useState, useEffect } from "react";
+import { useLazyQuery } from "@apollo/client";
+import { v4 as uuidv4 } from "uuid";
 
 import { ICurrency } from "../common/interfaces/currency";
 import { IEventToTrigger } from "../common/interfaces/eventToTrigger";
-import { useGetCurrency, GET_PRICES } from "./../querys/getCurrency";
-
-import { v4 as uuidv4 } from "uuid";
-
-import "../common/styles";
-import "./Home.css";
+import { GET_PRICES } from "./../querys/getCurrency";
 
 import CurrencyList from "./../components/currency-list";
 import TextField from "@mui/material/TextField";
-import { styled } from "@mui/material/styles";
+import LoadingModal from './../components/loading-modal'
 import Button, { ButtonProps } from "@mui/material/Button";
 import { orange } from "@mui/material/colors";
+import { styled } from "@mui/material/styles";
+import "../common/styles";
 
-import { gql, useLazyQuery } from "@apollo/client";
+
+
 
 const ColorButton = styled(Button)<ButtonProps>(({ theme }) => ({
   color: theme.palette.getContrastText(orange[900]),
@@ -48,9 +48,7 @@ function Home() {
       setLoadedData(false)      
     }
 
-    setTriggerCall(false);
-    //setSearchValue('')
-    
+    setTriggerCall(false);        
   }, [triggerCall]);
 
   useEffect(() => {
@@ -68,9 +66,10 @@ function Home() {
   {
     let currency =  Object.assign({},data.markets[0])
     currency.id = uuidv4();
-    const pivot = [...listCurrencies, currency];
+    const pivot = [currency, ...listCurrencies];
     setListCurrencies(pivot);
     setLoadedData(true)      
+    setSearchValue('')
 
   }
 
@@ -86,6 +85,7 @@ function Home() {
 
   return (
     <>
+    
       <header className="header-section"></header>
       <section className="middle-section">
         <div className="left-section">
@@ -103,7 +103,9 @@ function Home() {
               currencyData={currencyData}
               eventToTrigger={eventTOChild}
             />
+              
           </div>
+         
         </div>
         <div className="image-center">&nbsp;</div>
         <div className="image-search">
@@ -123,7 +125,7 @@ function Home() {
               <ColorButton
                 variant="contained"
                 onClick={() => {
-                  setTriggerCall(true);
+                  setTriggerCall(true)
                 }}
               >
                 ADD
