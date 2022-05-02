@@ -1,9 +1,9 @@
-# Frontend Developer Test Assignment
+# Frontend Developer Test Assignment Project
 
 ## Frontend Developer Test Assignment
 Create a website that will display the prices of different cryptocurrencies. The prices will be fetched from a 3rd party GraphQL API service.
 
-Task description:
+### Task description:
 
 - Use React, Apollo, TypeScript and hooks.
 - Create a website that looks similar to preview.png.
@@ -15,7 +15,7 @@ Task description:
 - The EUR price is fetched from an API service.
 
 
-## Task completed:
+### Task completed:
 
 - Use React, Apollo, TypeScript and hooks.
 - Create a website that looks similar to the image displayed below (reference image).
